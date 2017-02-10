@@ -7,6 +7,7 @@ This example demonstrates deploying a server that uses [`ember-cli`](https://git
 First, [download `now`](https://zeit.co/download). Then, clone this repository and run `now`:
 
 ```bash
+git clone git@github.com:oskarrough/ember-now-deployment-example.git
 now
 ```
 
