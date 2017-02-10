@@ -2,42 +2,41 @@
 
 This example demonstrates deploying a server that uses [`ember-cli`](https://github.com/ember-cli/ember-cli/) to [Now](https://now.sh/).
 
-## How to setup deploy for your own ember-cli project
+## How to deploy
 
-First, install `now` globally and create a new Ember application. 
-Then, add the `serve` package, which now will use to serve the static website.
+First, [download `now`](https://zeit.co/download). Then, clone this repository and run `now`:
 
 ```bash
-yarn global add now
-ember new my-project
-cd my-project
+now
 ```
 
-Update `engines` in `package.json` to at least node version 7. 
+> Example: [`https://now-test-cqtighifnv.now.sh/`](https://now-test-cqtighifnv.now.sh/)
+
+## How to setup deployment for your own ember-cli project
+  
+Add the `serve` package, which now will use to serve the static website.
+
+```bash
+yarn add serve
+```
+
+Update `engines` in `package.json` to at least node version 7.  
 This is temporary. There is work being done to make `serve` work for older versions of node as well.
 
-```
+```json
 "engines": {
   "node": ">= 7.0.0"
 },
 ```
 
-Add two new scripts to your `package.json`. 
+Add two new scripts to your `package.json`.  
 The `--single` flag makes sure all requests are routed through your index.html.
 
-```
+```json
 "scripts": {
-  ...
   "now-build": "ember build --environment=production",
   "now-start": "serve dist --single",
   ...
-},
 ```
 
-## How to deploy
-
-```
-now
-```
-
-> Example: [`https://now-test-cqtighifnv.now.sh/`](https://now-test-cqtighifnv.now.sh/)
+Run `now`.
