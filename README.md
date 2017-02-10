@@ -71,6 +71,6 @@ Modify your `now-build` script in package.json to:
 
 That's it. Now, when you run `now`, your Ember app will be served by a [fastboot-app-server](https://github.com/ember-fastboot/fastboot-app-server#quick-start) instead of `serve`.
 
-> Example: [`https://now-test-ikjoohlqrq.now.sh/](https://now-test-ikjoohlqrq.now.sh/) (check the source code, you'll see hello world in there)
+> Example: [`https://now-test-wvmhfiorbe.now.sh/](https://now-test-wvmhfiorbe.now.sh/) (check the source code, you'll see hello world in there)
 
 > Note: your app might need some modifications before it can run in a node environment. See [https://ember-fastboot.com/](https://ember-fastboot.com/).
