@@ -4,7 +4,8 @@ This example demonstrates deploying a server that uses [`ember-cli`](https://git
 
 ## How to deploy
 
-First, [download `now`](https://zeit.co/download). Then, clone this repository and run `now`:
+First, [download `now`](https://zeit.co/download).  
+Then, clone this repository and run `now`:
 
 ```bash
 git clone git@github.com:oskarrough/ember-now-deployment-example.git
@@ -15,7 +16,7 @@ now
 
 ## How to setup deployment for your own ember-cli project
   
-Add the `serve` package, which now will use to serve the static website.
+Add the `serve` package, which `now` will use to serve the static website.
 
 ```bash
 yarn add serve
@@ -31,7 +32,6 @@ This is temporary. There is work being done to make `serve` work for older versi
 ```
 
 Add two new scripts to your `package.json`.  
-The `--single` flag makes sure all requests are routed through your index.html.
 
 ```json
 "scripts": {
@@ -40,4 +40,37 @@ The `--single` flag makes sure all requests are routed through your index.html.
   ...
 ```
 
-Run `now`.
+The `--single` flag makes sure all requests are routed through your index.html.
+
+Run `now`. Done.
+
+## How to deploy with Ember FastBoot
+
+To get server-side rendering, we need to install two new packages:
+
+```bash
+yarn add ember-cli-fastboot fastboot-app-server
+```
+
+Put the following in a `server.js` file:
+
+```js
+const FastBootAppServer = require('fastboot-app-server');
+let server = new FastBootAppServer({
+  distPath: 'dist',
+  gzip: true // Optional - Enables gzip compression.
+});
+server.start();
+```
+
+Modify your `now-build` script in package.json to:
+
+```json
+"now-build": "PORT=8000 node server.js"
+```
+
+That's it. Now, when you run `now`, your Ember app will be served by a [fastboot-app-server](https://github.com/ember-fastboot/fastboot-app-server#quick-start) instead of `serve`.
+
+> Example: [`https://now-test-ikjoohlqrq.now.sh/](https://now-test-ikjoohlqrq.now.sh/) (check the source code, you'll see hello world in there)
+
+> Note: your app might need some modifications before it can run in a node environment. See [https://ember-fastboot.com/](https://ember-fastboot.com/).

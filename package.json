@@ -11,9 +11,9 @@
   "repository": "",
   "scripts": {
     "build": "ember build",
-    "now-build": "ember build -p",
-    "now-start": "serve dist --single",
     "start": "ember server",
+    "now-build": "ember build -p",
+    "now-start": "PORT=8000 node server.js",
     "test": "ember test"
   },
   "devDependencies": {
@@ -46,6 +46,8 @@
   },
   "private": true,
   "dependencies": {
-    "serve": "^3.2.8"
+    "ember-cli-fastboot": "^1.0.0-beta.15",
+    "fastboot-app-server": "^1.0.0-rc.5",
+    "serve": "^3.2.10"
   }
 }
