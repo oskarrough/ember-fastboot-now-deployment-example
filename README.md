@@ -1,52 +1,43 @@
-# now-test
+# Ember.js deployment to Now.sh
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This example demonstrates deploying a server that uses [`ember-cli`](https://github.com/ember-cli/ember-cli/) to [Now](https://now.sh/).
 
-## Prerequisites
+## How to setup deploy for your own ember-cli project
 
-You will need the following things properly installed on your computer.
+First, install `now` globally and create a new Ember application. 
+Then, add the `serve` package, which now will use to serve the static website.
 
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with NPM)
-* [Bower](https://bower.io/)
-* [Ember CLI](https://ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
+```bash
+yarn global add now
+ember new my-project
+cd my-project
+```
 
-## Installation
+Update `engines` in `package.json` to at least node version 7. 
+This is temporary. There is work being done to make `serve` work for older versions of node as well.
 
-* `git clone <repository-url>` this repository
-* `cd now-test`
-* `npm install`
-* `bower install`
+```
+"engines": {
+  "node": ">= 7.0.0"
+},
+```
 
-## Running / Development
+Add two new scripts to your `package.json`. 
+The `--single` flag makes sure all requests are routed through your index.html.
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+```
+"scripts": {
+  ...
+  "now-build": "ember build --environment=production",
+  "now-start": "serve dist --single",
+  ...
+},
+```
 
-### Code Generators
+## How to deploy
 
-Make use of the many generators for code, try `ember help generate` for more details
+```
+now
+```
 
-### Running Tests
-
-* `ember test`
-* `ember test --server`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](http://emberjs.com/)
-* [ember-cli](https://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+> Example: [`https://now-test-cqtighifnv.now.sh/`](https://now-test-cqtighifnv.now.sh/)
