@@ -66,7 +66,7 @@ server.start();
 Modify your `now-build` script in package.json to:
 
 ```json
-"now-build": "PORT=8000 node server.js"
+"now-start": "PORT=8000 node server.js"
 ```
 
 That's it. Now, when you run `now`, your Ember app will be served by a [fastboot-app-server](https://github.com/ember-fastboot/fastboot-app-server#quick-start) instead of `serve`.
