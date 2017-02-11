@@ -63,7 +63,7 @@ let server = new FastBootAppServer({
 server.start();
 ```
 
-Modify your `now-build` script in package.json to:
+Modify your `now-start` script in package.json to:
 
 ```json
 "now-start": "PORT=8000 node server.js"
@@ -74,3 +74,5 @@ That's it. Now, when you run `now`, your Ember app will be served by a [fastboot
 > Example: [`https://now-test-wvmhfiorbe.now.sh/](https://now-test-wvmhfiorbe.now.sh/) (check the source code, you'll see hello world in there)
 
 > Note: your app might need some modifications before it can run in a node environment. See [https://ember-fastboot.com/](https://ember-fastboot.com/).
+
+> Another note: now.sh servers "sleep" and currently waking up can take ~20 seconds. Not sure how to deal with this.
