@@ -16,10 +16,11 @@ now
 
 ## How to setup deployment for your own ember-cli project
   
-Add the `serve` package, which `now` will use to serve the static website.
+Add the `serve` package, which `now` will use to serve the static website. Bower will need to be installed locally as well, if you use it.
 
 ```bash
 yarn add serve
+yarn add bower
 ```
 
 Update `engines` in `package.json` to at least node version 7.  
