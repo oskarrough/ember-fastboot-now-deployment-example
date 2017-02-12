@@ -12,7 +12,7 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "now-build": "bower install; ember build --environment production",
+    "now-build": "bower install; ember build --environment=production",
     "now-start": "PORT=8000 node server.js",
     "test": "ember test"
   },
