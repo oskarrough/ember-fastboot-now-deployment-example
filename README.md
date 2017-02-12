@@ -35,7 +35,7 @@ Add two new scripts to your `package.json`.
 
 ```json
 "scripts": {
-  "now-build": "ember build --environment=production",
+  "now-build": "bower install; ember build --environment=production",
   "now-start": "serve dist --single",
   ...
 ```
