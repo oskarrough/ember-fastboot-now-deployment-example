@@ -4,7 +4,7 @@ This example demonstrates deploying a server that uses [`ember-cli`](https://git
 
 ## How to deploy
 
-First, [download `now`](https://zeit.co/download).  
+First, [download `now`](https://zeit.co/download).
 Then, clone this repository and run `now`:
 
 ```bash
@@ -15,7 +15,7 @@ now
 > Example: [`https://now-test-cqtighifnv.now.sh/`](https://now-test-cqtighifnv.now.sh/)
 
 ## How to setup deployment for your own ember-cli project
-  
+
 Add the `serve` package, which `now` will use to serve the static website. Bower will need to be installed locally as well, if you use it.
 
 ```bash
@@ -23,7 +23,7 @@ yarn add serve
 yarn add bower
 ```
 
-Update `engines` in `package.json` to at least node version 7.  
+Update `engines` in `package.json` to at least node version 7.
 This is temporary. There is work being done to make `serve` work for older versions of node as well.
 
 ```json
@@ -32,7 +32,7 @@ This is temporary. There is work being done to make `serve` work for older versi
 },
 ```
 
-Add two new scripts to your `package.json`.  
+Add two new scripts to your `package.json`.
 
 ```json
 "scripts": {
@@ -53,7 +53,7 @@ To get server-side rendering, we need to install two new packages:
 yarn add ember-cli-fastboot fastboot-app-server
 ```
 
-Put the following in a `server.js` file:
+Put the following in a `fastboot-server.js` file:
 
 ```js
 const FastBootAppServer = require('fastboot-app-server');
@@ -67,7 +67,7 @@ server.start();
 Modify your `now-start` script in package.json to:
 
 ```json
-"now-start": "PORT=8000 node server.js"
+"now-start": "PORT=8000 node fastboot-server.js"
 ```
 
 That's it. Now, when you run `now`, your Ember app will be served by a [fastboot-app-server](https://github.com/ember-fastboot/fastboot-app-server#quick-start) instead of `serve`.
