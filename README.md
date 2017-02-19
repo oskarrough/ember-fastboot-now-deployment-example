@@ -1,11 +1,9 @@
 # Ember.js deployment to Now.sh
 
-This example demonstrates deploying a server that uses [`ember-cli`](https://github.com/ember-cli/ember-cli/) to [Now](https://now.sh/).
-
-## How to deploy
+This example demonstrates how you can deploy an [Ember](http://emberjs.com/) application to [Now](https://now.sh/).
 
 First, [download `now`](https://zeit.co/download).
-Then, clone this repository and run `now`:
+Then, clone this repository (a fresh ember project with fastboot and deployment already configured) and run `now`:
 
 ```bash
 git clone git@github.com:oskarrough/ember-now-deployment-example.git
@@ -14,9 +12,12 @@ now
 
 > Example: [`https://now-test-cqtighifnv.now.sh/`](https://now-test-cqtighifnv.now.sh/)
 
+But you probably already have an application, read on...
+
 ## How to setup deployment for your own ember-cli project
 
-Add the `serve` package, which `now` will use to serve the static website. Bower will need to be installed locally as well, if you use it.
+Add the `serve` package, which `now` will use to serve the static website.  
+If you use bower, make sure to install that to your project as well.
 
 ```bash
 yarn add serve
@@ -24,7 +25,7 @@ yarn add bower
 ```
 
 Update `engines` in `package.json` to at least node version 7.
-This is temporary. There is work being done to make `serve` work for older versions of node as well.
+There is work being done to make `serve` work for older versions of node as well but for now it is required.
 
 ```json
 "engines": {
@@ -53,7 +54,7 @@ To get server-side rendering, we need to install two new packages:
 yarn add ember-cli-fastboot fastboot-app-server
 ```
 
-Put the following in a `fastboot-server.js` file:
+Put the following in a new `fastboot-server.js` file in the root of your project.
 
 ```js
 const FastBootAppServer = require('fastboot-app-server');
