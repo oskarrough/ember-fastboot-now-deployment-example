@@ -1,7 +1,7 @@
 {
-  "name": "now-test",
+  "name": "ember-now-deployment-example",
   "version": "0.0.0",
-  "description": "Small description for now-test goes here",
+  "description": "An example setup with ember-cl & fastboot deployed to now.sh",
   "license": "MIT",
   "author": "",
   "directories": {
@@ -10,44 +10,39 @@
   },
   "repository": "",
   "scripts": {
-    "build": "ember build",
+    "build": "ember build -prod",
     "start": "ember server",
-    "now-build": "bower install; ember build --environment=production",
-    "now-start": "PORT=8000 node fastboot-server.js",
+    "now-build": "bower install; npm run build",
+    "now-start": "NODE_ENV=production PORT=8000 node fastboot-server.js",
     "test": "ember test"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
-    "ember-ajax": "^2.4.1",
-    "ember-cli": "2.11.0",
-    "ember-cli-app-version": "^2.0.0",
-    "ember-cli-babel": "^5.1.7",
+    "ember-cli": "2.13.2",
+    "ember-cli-app-version": "^3.0.0",
+    "ember-cli-babel": "^6.0.0",
     "ember-cli-dependency-checker": "^1.3.0",
+    "ember-cli-eslint": "^3.0.0",
+    "ember-cli-fastboot": "^1.0.0-rc.2",
     "ember-cli-htmlbars": "^1.1.1",
-    "ember-cli-htmlbars-inline-precompile": "^0.3.3",
+    "ember-cli-htmlbars-inline-precompile": "^0.4.0",
     "ember-cli-inject-live-reload": "^1.4.1",
-    "ember-cli-jshint": "^2.0.1",
-    "ember-cli-qunit": "^3.0.1",
-    "ember-cli-release": "^0.2.9",
-    "ember-cli-shims": "^1.0.2",
+    "ember-cli-qunit": "^4.0.0",
+    "ember-cli-shims": "^1.1.0",
     "ember-cli-sri": "^2.1.0",
-    "ember-cli-test-loader": "^1.1.0",
     "ember-cli-uglify": "^1.2.0",
-    "ember-data": "^2.11.0",
-    "ember-export-application-global": "^1.0.5",
-    "ember-load-initializers": "^0.6.0",
-    "ember-resolver": "^2.0.3",
-    "ember-source": "^2.11.0",
-    "ember-welcome-page": "^2.0.2",
-    "loader.js": "^4.0.10"
+    "ember-data": "^2.13.0",
+    "ember-export-application-global": "^2.0.0",
+    "ember-fetch": "^2.1.0",
+    "ember-load-initializers": "^1.0.0",
+    "ember-resolver": "^4.0.0",
+    "ember-source": "~2.13.0",
+    "fastboot-app-server": "^1.0.0-rc.5",
+    "loader.js": "^4.2.3",
+    "serve": "^5.2.1"
   },
   "engines": {
-    "node": ">= 7.0.0"
+    "node": ">= 4"
   },
-  "private": true,
-  "dependencies": {
-    "ember-cli-fastboot": "^1.0.0-beta.15",
-    "fastboot-app-server": "^1.0.0-rc.5",
-    "serve": "^3.2.10"
-  }
+  "private": true
 }

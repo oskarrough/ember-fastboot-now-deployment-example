@@ -1,8 +1,8 @@
-/* jshint node: true */
+/* eslint-env node */
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'now-test',
+    modulePrefix: 'ember-now-deployment-example',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',

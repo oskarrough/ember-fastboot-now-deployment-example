@@ -29,7 +29,7 @@ There is work being done to make `serve` work for older versions of node as well
 
 ```json
 "engines": {
-  "node": ">= 7.0.0"
+  "node": ">= 7"
 },
 ```
 
@@ -37,12 +37,12 @@ Add two new scripts to your `package.json`.
 
 ```json
 "scripts": {
-  "now-build": "bower install; ember build --environment=production",
+  "now-build": "bower install; ember build -prod",
   "now-start": "serve dist --single",
   ...
 ```
 
-The `--single` flag makes sure all requests are routed through your index.html.
+The `--single` flag to `serve` makes sure all requests are routed through your index.html.
 
 Run `now`. Done.
 
@@ -68,13 +68,13 @@ server.start();
 Modify your `now-start` script in package.json to:
 
 ```json
-"now-start": "PORT=8000 node fastboot-server.js"
+"now-start": "NODE_ENV=production PORT=8000 node fastboot-server.js"
 ```
 
 That's it. Now, when you run `now`, your Ember app will be served by a [fastboot-app-server](https://github.com/ember-fastboot/fastboot-app-server#quick-start) instead of `serve`.
 
-> Example: [`https://now-test-wvmhfiorbe.now.sh/](https://now-test-wvmhfiorbe.now.sh/) (check the source code, you'll see hello world in there)
+> Example: [`https://ember-now-deployment-example-uvcmrgzsxg.now.sh/](https://ember-now-deployment-example-uvcmrgzsxg.now.sh/) (check the source code, you'll see hello world in there)
 
-> Note: your app might need some modifications before it can run in a node environment. See [https://ember-fastboot.com/](https://ember-fastboot.com/).
+> Note: your app might need some modifications before it can run in a non-browser environment. See [https://ember-fastboot.com/](https://ember-fastboot.com/).
 
-> Another note: now.sh servers "sleep" and currently waking up can take ~20 seconds. Not sure how to deal with this.
+> Another note: now.sh servers "sleep" and currently waking up can take ~20 seconds. If you have a payed account, you can avoid this with `now scale [insert-deployment-id] 1`.
