@@ -4,6 +4,12 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     // Add options here
+
+		fingerprint: {
+			// Required because of fastboot.
+			// Without it it can't find 'dist/assets/vendor.js'.
+			generateAssetMap: EmberApp.env() === 'production'
+		}
   });
 
   // Use `app.import` to add additional libraries to the generated

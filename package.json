@@ -10,10 +10,10 @@
   },
   "repository": "",
   "scripts": {
-    "build": "ember build",
+    "build": "ember build -prod",
     "start": "ember server",
-    "now-build": "bower install; ember build --environment=production",
-    "now-start": "PORT=8000 node fastboot-server.js",
+    "now-build": "bower install; npm run build",
+    "now-start": "NODE_ENV=production PORT=8000 node fastboot-server.js",
     "test": "ember test"
   },
   "devDependencies": {
