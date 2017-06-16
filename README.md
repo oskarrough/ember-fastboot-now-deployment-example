@@ -5,7 +5,7 @@ This example demonstrates how you can deploy an [Ember](http://emberjs.com/) + F
 1. Download `now` on https://zeit.co/download)
 2. Run `now oskarrough/ember-now-deployment-example`
 
-Now, `now` will clone the repo, it will run either `yarn` or `npm install` in the cloud followed by `npm build` and finally `npm start` and return a unique deployment URL. Here's an example: [`https://now-test-cqtighifnv.now.sh/`](https://now-test-cqtighifnv.now.sh/).
+Now, `now` will clone the repo, it will run either `yarn` or `npm install` in the cloud followed by `npm build` and finally `npm start` and return a unique deployment URL. Here's an example: [`https://ember-now-deployment-example-pqwagqtgcn.now.sh/`](https://ember-now-deployment-example-pqwagqtgcn.now.sh/).
 
 But you probably already have an application… If you want server-side rendering with FastBoot, we will need to deploy a node.js app. If you don't need FastBoot, we can get away with a static build:
 
@@ -67,8 +67,9 @@ Modify your `now-start` script in package.json to:
 
 That's it. Now, when you run `now`, your Ember app will be served by a [fastboot-app-server](https://github.com/ember-fastboot/fastboot-app-server#quick-start) instead of `serve`.
 
-> Example: [`https://ember-now-deployment-example-uvcmrgzsxg.now.sh/](https://ember-now-deployment-example-uvcmrgzsxg.now.sh/) (check the source code, you'll see hello world in there)
+> Example: [`https://ember-now-deployment-example-pqwagqtgcn.now.sh/`](https://ember-now-deployment-example-pqwagqtgcn.now.sh/) (check the source code, you'll see hello world in there)
 
 > Note: your app might need some modifications before it can run in a non-browser environment. See [https://ember-fastboot.com/](https://ember-fastboot.com/).
 
 > Another note: now.sh servers "sleep" and currently waking up can take ~30 seconds. If you have a payed account, you can avoid this with `now scale [insert-deployment-id] 1`.
+
