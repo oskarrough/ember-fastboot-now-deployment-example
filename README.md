@@ -73,3 +73,6 @@ That's it. Now, when you run `now`, your Ember app will be served by a [fastboot
 
 > Another note: now.sh servers "sleep" and currently waking up can take ~30 seconds. If you have a payed account, you can avoid this with `now scale [insert-deployment-id] 1`.
 
+## Progressive Web App
+
+To improve performance further, see the ["PWA" branch](https://github.com/oskarrough/ember-fastboot-now-deployment-example/pull/5) on this repo and https://madhatted.com/2017/6/16/building-a-progressive-web-app-with-ember.
