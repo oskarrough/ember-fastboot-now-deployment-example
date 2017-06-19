@@ -3,7 +3,23 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    // Add options here
+    // 'ember-service-worker': {
+    //   enabled: false
+    // },
+    'asset-cache': {
+      include: [
+        'assets/**/*'
+      ]
+    },
+    'esw-cache-fallback': {
+      patterns: [ '/' ],
+      version: '1' // Changing the version will bust the cache
+    },
+    fingerprint: {
+      // Required because of fastboot.
+      // Without it it can't find 'dist/assets/vendor.js'.
+      generateAssetMap: EmberApp.env() === 'production'
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated

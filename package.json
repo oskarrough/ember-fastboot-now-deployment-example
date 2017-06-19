@@ -10,14 +10,17 @@
   },
   "repository": "",
   "scripts": {
-    "build": "ember build -prod",
+    "build": "ember build -prod; npm run critical-css",
     "start": "ember server",
     "now-build": "bower install; npm run build",
     "now-start": "NODE_ENV=production PORT=8000 node fastboot-server.js",
-    "test": "ember test"
+    "test": "ember test",
+    "critical-css": "cat dist/index.html | critical --base dist/ --inline --minify > index.tmp && mv index.tmp dist/index.html"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
+    "critical": "^0.8.4",
+    "css": "^2.2.1",
     "ember-cli": "2.13.2",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.0.0",
@@ -31,12 +34,17 @@
     "ember-cli-shims": "^1.1.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^1.2.0",
-    "ember-data": "^2.13.0",
+    "ember-data": "^2.13.1",
     "ember-export-application-global": "^2.0.0",
     "ember-fetch": "^2.1.0",
     "ember-load-initializers": "^1.0.0",
     "ember-resolver": "^4.0.0",
+    "ember-service-worker": "^0.6.7",
+    "ember-service-worker-asset-cache": "^0.6.1",
+    "ember-service-worker-cache-fallback": "^0.6.1",
     "ember-source": "~2.13.0",
+    "ember-web-app": "^1.3.0",
+    "ember-web-app-rename": "^1.0.0",
     "fastboot-app-server": "^1.0.0-rc.5",
     "loader.js": "^4.2.3",
     "serve": "^5.2.1"
