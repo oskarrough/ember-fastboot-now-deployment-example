@@ -5,19 +5,57 @@ This example demonstrates how you can deploy an [Ember](http://emberjs.com/) + F
 1. Download `now` on https://zeit.co/download)
 2. Run `now oskarrough/ember-now-deployment-example`
 
-Now, `now` will clone the repo, it will run either `yarn` or `npm install` in the cloud followed by `npm build` and finally `npm start` and return a unique deployment URL. Here's an example: [`https://ember-now-deployment-example-pqwagqtgcn.now.sh/`](https://ember-now-deployment-example-pqwagqtgcn.now.sh/).
+That's it. Now, `now` will clone the repo, it will run either `yarn` or `npm install` (depending on your lock files) in the cloud followed by `npm build` and finally `npm start` and return a unique deployment URL. 
 
-But you probably already have an application… If you want server-side rendering with FastBoot, we will need to deploy a node.js app. If you don't need FastBoot, we can get away with a static build:
+## How to deploy Ember to now with FastBoot
+
+There are three steps.
+
+1. Install ember fastboot to your ember app
+2. Create a node.js server that serves your app
+3. Configure our scripts in `package.json`
+
+1) To get server-side rendering, we need to install two new packages:
+
+```bash
+yarn add ember-cli-fastboot fastboot-app-server
+```
+
+> If you can run `npm start` and see your rendered app when you view source
+> Note: your app might need some modifications before it can run in a non-browser environment. See [https://ember-fastboot.com/](https://ember-fastboot.com/).
+
+2) Create a new `fastboot-server.js` file in the root of your project. Copy/paste the following:
+
+```js
+const FastBootAppServer = require('fastboot-app-server')
+const server = new FastBootAppServer({
+  distPath: 'dist',
+  gzip: true // Optional - Enables gzip compression.
+})
+server.start()
+```
+
+3) Now to configure the scripts. We will need to first run ember build and then start the new fastboot server.
+
+When we run `now` it will run first `npm build` then `npm start` in the cloud. The normal start script for ember-cli runs `ember serve`. But through convention now allows you to overwrite what is run with `now-build` and `now-start. Like this:
+
+```json
+"start-fastboot": "NODE_ENV=production node fastboot-server.js",
+"now-start": "start-fastboot",
+```
+
+> Example: [`https://ember-now-deployment-example-pqwagqtgcn.now.sh/`](https://ember-now-deployment-example-pqwagqtgcn.now.sh/) (check the source code, you'll see hello world in there)
+
+> Another note: now.sh servers "sleep" and currently waking up can take ~30 seconds. If you have a payed account, you can avoid this with `now scale [insert-deployment-id] 1`.
 
 ## How to deploy Ember to now.sh without FastBoot
 
-To deploy stuff on now, you need a package.json and the `start` and `build` scripts defined. You can use `now-start` and `now-build` to use different commands locally and on now.
+To deploy stuff on now, you need a package.json with `start` and `build` scripts defined. To use different commands locally and on now, use `now-start` and `now-build`.
 
 Add the `serve` package, which `now` will use to serve the static website.  
 
 ```bash
 yarn add serve
-yarn add bower # only needed if you use bower
 ```
 
 Update `engines` in `package.json` to at least node version 6.9.0. This is a requirement from `serve`. 
@@ -32,46 +70,13 @@ Add two new scripts to your `package.json`.
 
 ```json
 "scripts": {
-  "now-build": "bower install; ember build -prod",
+  "now-build": "ember build --environment=production",
   "now-start": "serve dist --single",
   ...
 ```
 
 The `--single` flag to `serve` makes sure all requests are routed through your index.html.  
 Run `now`. Done.
-
-## How to deploy Ember to now with FastBoot
-
-To get server-side rendering, we need to install two new packages:
-
-```bash
-yarn add ember-cli-fastboot fastboot-app-server
-```
-
-Create a new `fastboot-server.js` file in the root of your project with the following:
-
-```js
-const FastBootAppServer = require('fastboot-app-server')
-const server = new FastBootAppServer({
-  distPath: 'dist',
-  gzip: true // Optional - Enables gzip compression.
-})
-server.start()
-```
-
-Modify your `now-start` script in package.json to:
-
-```json
-"now-start": "NODE_ENV=production PORT=8000 node fastboot-server.js"
-```
-
-That's it. Now, when you run `now`, your Ember app will be served by a [fastboot-app-server](https://github.com/ember-fastboot/fastboot-app-server#quick-start) instead of `serve`.
-
-> Example: [`https://ember-now-deployment-example-pqwagqtgcn.now.sh/`](https://ember-now-deployment-example-pqwagqtgcn.now.sh/) (check the source code, you'll see hello world in there)
-
-> Note: your app might need some modifications before it can run in a non-browser environment. See [https://ember-fastboot.com/](https://ember-fastboot.com/).
-
-> Another note: now.sh servers "sleep" and currently waking up can take ~30 seconds. If you have a payed account, you can avoid this with `now scale [insert-deployment-id] 1`.
 
 ## Progressive Web App
 

@@ -11,11 +11,12 @@
   },
   "repository": "",
   "scripts": {
+    "start": "ember serve",
     "build": "ember build -prod",
     "lint:js": "eslint ./*.js app config lib server tests",
-    "start": "ember serve",
     "test": "ember test",
-    "now-start": "NODE_ENV=production PORT=8000 node fastboot-server.js"
+    "start-fastboot": "NODE_ENV=production node fastboot-server.js",
+    "now-start": "npm run start-fastboot"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
