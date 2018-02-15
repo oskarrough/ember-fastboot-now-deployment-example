@@ -1,0 +1,10 @@
+{
+  "name": "ember-fastboot-now-deployment-example",
+  "profile": "oskar",
+  "regions": [
+    "eu-west-1"
+  ],
+  "proxy": {
+    "command": "npm run start-fastboot"
+  }
+}
