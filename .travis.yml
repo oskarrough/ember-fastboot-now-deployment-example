@@ -4,18 +4,22 @@ node_js:
   - "6"
 
 sudo: false
+dist: trusty
+
+addons:
+  chrome: stable
 
 cache:
   yarn: true
 
-before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash
-  - export PATH=$HOME/.yarn/bin:$PATH
-  - yarn global add phantomjs-prebuilt
-  - phantomjs --version
+env:
+  global:
+    # See https://git.io/vdao3 for details.
+    - JOBS=1
 
-install:
-  - yarn install
+before_install:
+  - npm config set spin false
 
 script:
-  - yarn test
+  - npm run lint:js
+  - npm test
