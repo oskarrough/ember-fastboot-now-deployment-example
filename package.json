@@ -11,15 +11,16 @@
   },
   "repository": "",
   "scripts": {
-    "start": "ember serve",
-    "build": "ember build -prod",
+    "build": "ember build --environment=production",
     "lint:js": "eslint ./*.js app config lib server tests",
-    "test": "ember test",
+    "start": "ember serve",
     "start-fastboot": "NODE_ENV=production node fastboot-server.js",
-    "now-start": "npm run start-fastboot"
+    "now-start": "npm run start-fastboot",
+    "test": "ember test"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
+    "ember-ajax": "^3.0.0",
     "ember-cli": "~3.0.0",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.6.0",
@@ -35,15 +36,13 @@
     "ember-cli-uglify": "^2.0.0",
     "ember-data": "~3.0.0",
     "ember-export-application-global": "^2.0.0",
-    "ember-fetch": "^3.4.4",
     "ember-load-initializers": "^1.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-resolver": "^4.0.0",
     "ember-source": "~3.0.0",
     "eslint-plugin-ember": "^5.0.0",
     "fastboot-app-server": "^1.1.0",
-    "loader.js": "^4.2.3",
-    "serve": "^6.4.9"
+    "loader.js": "^4.2.3"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"
