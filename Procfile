@@ -1,1 +1,1 @@
-web: npm run start-fastboot
+web: node fastboot-server.js
