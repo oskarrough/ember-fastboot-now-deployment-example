@@ -5,6 +5,7 @@ const FastBootAppServer = require('fastboot-app-server');
 let server = new FastBootAppServer({
   distPath: 'dist',
   gzip: true,
+  // Force HTTPS. Also required for gzip on Heroku.
   beforeMiddleware(app) {
     app.use((request, response, next) => {
       if (request.headers['x-forwarded-proto'] === 'https') {
