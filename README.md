@@ -81,3 +81,7 @@ Run `now`. Done.
 ## Progressive Web App
 
 To improve performance further, see the ["PWA" branch](https://github.com/oskarrough/ember-fastboot-now-deployment-example/pull/5) on this repo and https://madhatted.com/2017/6/16/building-a-progressive-web-app-with-ember.
+
+## Deploying with `up`
+
+Here we just reuse the above. That is, deploy to a node host and run `npm build` followed by `npm start-fastboot`. See `up.json`.
